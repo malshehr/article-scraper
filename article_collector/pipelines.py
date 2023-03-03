@@ -1,0 +1,40 @@
+from itemadapter import ItemAdapter
+
+import mongo.operations
+
+
+class ArticleCollectorPipeline:
+
+    def __init__(self, mongo_uri, mongo_db, mongo_collection, mongo_user, mongo_password):
+        self.db = None
+        self.client = None
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+        self.mongo_collection = mongo_collection
+        self.mongo_user = mongo_user
+        self.mongo_password = mongo_password
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            mongo_uri=crawler.settings.get('MONGO_URI'),
+            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items'),
+            mongo_collection=crawler.settings.get('MONGO_COLLECTION'),
+            mongo_user=crawler.settings.get('MONGO_USER'),
+            mongo_password=crawler.settings.get('MONGO_PASSWORD')
+        )
+
+    def process_item(self, item, spider):
+        mongo.operations.insert_item(self.db, self.mongo_collection, item)
+        # print("OMGG " + mongo.operations.search_articles("train", self.db, self.mongo_collection))
+        # for x in mongo.operations.search_articles("train", self.db, self.mongo_collection):
+        #     print("HERE")
+        #     print(x)
+        return item
+
+    def open_spider(self, spider):
+        self.client = mongo.operations.get_client(self.mongo_uri,  self.mongo_user, self.mongo_password)
+        self.db = mongo.operations.get_database(self.client, self.mongo_db)
+
+    def close_spider(self, spider):
+        self.client.close()
