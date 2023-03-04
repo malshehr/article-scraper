@@ -69,6 +69,7 @@ class ArticleCollectorDownloaderMiddleware:
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
+    # Ignores requests that are not within the allowed domains
     def process_request(self, request, spider):
         # Called for each request that goes through the downloader
         # middleware.

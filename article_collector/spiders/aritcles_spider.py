@@ -7,6 +7,9 @@ import scrapy
 class ArticlesSpider(scrapy.Spider):
     name = "articles"
     allowed_domains = ['theguardian.com']
+
+    # default url for scrapy crawlers: fetches all articles on international page,
+    # parses the links, then parses every article individually
     def start_requests(self):
         urls = [
             'https://www.theguardian.com/international',
@@ -21,6 +24,8 @@ class ArticlesSpider(scrapy.Spider):
         for link in articles_links:
             yield scrapy.Request(link, callback=self.parse_articles)
 
+    # guardian article parser: uses GuardianParser object to parse
+    # a given response from the guardian news website
     def parse_articles(self, response):
         guardian_parser = GuardianParser(response)
         article_item = ArticleCollectorItem()
