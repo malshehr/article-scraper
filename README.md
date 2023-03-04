@@ -9,6 +9,8 @@ Article scraper allows users to utilize scrapy crawlers to crawl articles and fe
 
 beautiful soup library, then stores it in MongoDB collection. These crawlers are accessible via the defined Flask APIs.
 
+Note: The Mongo database is deployed on MongoDB Atlas
+
 
 
 ## APIs
