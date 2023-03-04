@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # Managing configuration prior to running the Flask app
 
-logging.basicConfig(filename='record.log', level=logging.DEBUG)
+logging.basicConfig(filename='article-scraper.log', level=logging.DEBUG)
 logger = app.logger
 
 config = configparser.ConfigParser()
