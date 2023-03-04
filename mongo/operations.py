@@ -1,6 +1,7 @@
 from pymongo import MongoClient, ASCENDING, DESCENDING, TEXT
 from itemadapter import ItemAdapter
 
+# Python module for handling Mongodb operations
 
 def get_client(mongo_uri, mongo_user, mongo_password):
     return MongoClient(mongo_uri, username=mongo_user, password=mongo_password)
@@ -15,5 +16,5 @@ def insert_item(database, collection, item):
 
 
 def search_articles(keyword, database, collection):
-    query = {'title': {'$regex': keyword}}
+    query = {'content': {'$regex': keyword}}
     return [item for item in database[collection].find(query)]
