@@ -38,7 +38,7 @@ beautiful soup library, then stores it in MongoDB collection. These crawlers are
   - ###### Request:
 
     ```
-    http post localhost:5000/guardian-article article=https://www.theguardian.com/science/2023/mar/01/uk-satellite-launches-mps-committee-virgin-orbit-failed-mission
+    http post localhost:5000/international-page
     ```
 
   - ###### Response:
