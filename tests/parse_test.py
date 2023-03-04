@@ -15,7 +15,7 @@ def get_article_contents(soup):
         main_content = soup.find('div', {'id': 'maincontent'}) if soup.find('div', {
             'id': 'maincontent'}) is not None else soup.find('div', {'class': 'content-container'})
         paragraphs = [paragraph.get_text() for paragraph in main_content.find_all('p')]
-        article = '\n'.join(paragraphs)
+        article = ' '.join(paragraphs)
         return json.dumps(article)
     except AttributeError:
         return 'N/A'
