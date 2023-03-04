@@ -25,7 +25,7 @@ class GuardianParser:
             main_content = self.soup.find('div', {'id': 'maincontent'}) if self.soup.find('div', {
                 'id': 'maincontent'}) is not None else self.soup.find('div', {'class': 'content-container'})
             paragraphs = [paragraph.get_text() for paragraph in main_content.find_all('p')]
-            article = '\n'.join(paragraphs)
+            article = ' '.join(paragraphs)
             return json.dumps(article)
         except AttributeError:
             return 'N/A'
