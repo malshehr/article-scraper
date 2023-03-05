@@ -5,9 +5,7 @@ Article scraper consists of two main parts:
 - Flask Application
 - Scrapy project
 
-Article scraper allows users to utilize scrapy crawlers to crawl articles and fetch the relevant data from HTML, parses it using 
-
-beautiful soup library, then stores it in MongoDB collection. These crawlers are accessible via the defined Flask APIs.
+Article scraper allows users to utilize scrapy crawlers to crawl the guardian articles and fetch the relevant data from HTML, parses it using beautiful soup library, then stores it in MongoDB collection. These crawlers are accessible via the defined Flask APIs.
 
 Note: The Mongo database is deployed on MongoDB Atlas
 
